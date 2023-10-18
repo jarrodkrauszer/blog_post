@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #FFE2FE;
+  --secondary-color: #160C28;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: var(--primary-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.row, .column {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+header {
+  background: var(--secondary-color);
+  color: #fff;
+  color: var(--primary-color);
+  padding: 2rem 3rem;
+  margin-bottom: 4rem;
+}
+
+header > a {
+  font-size: 1.5rem;
+}
+
+header nav p,a {
+  font-size: 1.2rem;
+}
+
+header nav > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+form {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  margin: 35px auto 0;
+}
+
+form h1 {
+  text-align: center;
+}
+
+form p.error {
+  color: red;
+}
+
+form > * {
+  padding: .5rem .75rem;
+  margin: .3rem 0;
+}
