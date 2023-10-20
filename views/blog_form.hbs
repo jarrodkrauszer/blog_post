@@ -1,0 +1,28 @@
+<section class="column align-center">
+  <form action="/blog" method="POST" class="blog-form">
+
+    {{#each errors}}
+      <p class="error text-center">{{this}}</p>
+    {{/each}}
+
+    <header class="blog-header">
+      <h1>Create New Post</h1>
+    </header>
+    <p>Title</p>
+    <input
+      type="text"
+      name="title"
+      class="title-input"
+      placeholder="Write your title"
+    />
+    <p>Content</p>
+    <textarea name="text" cols="30" rows="10" class="blog-input" placeholder="Write your Blog">
+    </textarea>
+    
+    <button class="create-btn">Create</button>
+  </form>
+
+  <a href="/blog">
+    <button class="new-post-btn">New Post</button>
+  </a>
+</section>

@@ -9,6 +9,8 @@ const session = require('express-session');
 // Import our view_routes
 const view_routes = require('./controllers/view_routes');
 const user_routes = require('./controllers/user_routes');
+const dashboard_routes = require('./controllers/dashboard_routes');
+const blog_routes = require('./controllers/blog_routes');
 
 // Create the port number and prepare for heroku with the process.env.PORT value
 const PORT = process.env.PORT || 3333;
@@ -36,7 +38,7 @@ app.use(session({
 }));
 
 // Load our view routes at the root level '/'
-app.use('/', view_routes);
+app.use('/', [view_routes, dashboard_routes, blog_routes]);
 app.use('/auth', user_routes);
 
 // Start the server and log the port that it started on

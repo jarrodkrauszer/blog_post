@@ -12,6 +12,7 @@
 body {
   font-family: sans-serif;
   background: var(--primary-color);
+  height: 100vh;
 }
 
 a {
@@ -51,16 +52,16 @@ header {
   margin-bottom: 4rem;
 }
 
-header > a {
-  font-size: 1.5rem;
-}
-
 header nav p,a {
   font-size: 1.2rem;
 }
 
+header nav span {
+  font-size: 1.1rem
+}
+
 header nav > *:not(:last-child) {
-  margin-right: 1rem;
+  margin-right: .5rem;
 }
 
 form {
@@ -81,4 +82,79 @@ form p.error {
 form > * {
   padding: .5rem .75rem;
   margin: .3rem 0;
+}
+
+.blog {
+  width: 80%;
+  height: %;
+  border: solid var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.blog header {
+  padding: 1rem .5rem;
+}
+
+.posted-by > *:not(:last-child) {
+  margin-right: .3rem;
+}
+
+.blog p {
+  text-align: left;
+}
+
+.new-post-btn {
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.blog-form {
+  width: 80%;
+  height: 75%;
+  border: solid var(--secondary-color);
+  padding: .5rem;
+}
+
+.blog-form h1 {
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.blog-form p {
+  padding: 0 0 0 .2rem;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.blog-header {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.title-input {
+  height: 2.5rem;
+}
+
+.blog-input {
+  height: 10rem;
+}
+
+.create-btn {
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.login-form a {
+  margin-top: 1rem;
+  color: var(--secondary-color);
+  padding-bottom: .1rem;
+  border-bottom: solid var(--secondary-color);
+}
+
+.login-form a:hover {
+  text-decoration: none;
 }

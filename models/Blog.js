@@ -5,19 +5,36 @@ const dayjs = require('dayjs');
 class Blog extends Model {}
 
 Blog.init({
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: 0,
+        msg: 'You can not have an empty title'
+      }
+    }
+  },
   text: {
     type: DataTypes.STRING,
     validate: {
       len: {
-        args: 3,
-        msg: 'Your coo message must be at least 3 characters in length'
+        args: 0,
+        msg: 'You can not have an empty blog'
       }
     }
   },
   date: {
     type: DataTypes.VIRTUAL,
     get() {
-      return dayjs(this.createdAt).format('MM/DD/YYYY hh:mma');
+      return dayjs(this.createdAt).format('MM/DD/YYYY');
+    }
+  },
+  author_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'users',
+      key: 'id'
     }
   }
 }, {

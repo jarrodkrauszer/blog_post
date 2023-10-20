@@ -1,0 +1,15 @@
+<section class="column align-center coo-output">
+  {{#each blogs}}
+    <div class="blog">
+      <h3 class="text-center">{{text}}</h3>
+      <div class="row justified-between">
+        <p>{{date}}</p>
+        <p>By: {{author.user_name}}</p>
+      </div>
+    </div>
+  {{/each}}
+
+  <a href="/blog">
+    <button class="new-post-btn">New Post</button>
+  </a>
+</section>

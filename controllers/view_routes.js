@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
+const Blog = require('../models/Blog');
 
 function isLoggedIn(req, res, next) {
   if (req.session.user_id) {
@@ -33,10 +34,18 @@ async function authenticate(req, res, next) {
 }
 
 // Add one test GET route at root localhost:PORT/
-router.get('/', authenticate, (req, res) => {
+router.get('/', authenticate, async (req, res) => {
+
+  const blogs = await Blog.findAll({
+    include: {
+      model: User,
+      as: 'author'
+    }
+  });
 
   res.render('landing', { 
-    user: req.user
+    user: req.user,
+    blogs: blogs.map(b => b.get({ plain: true }))
   });
 
 });
@@ -59,6 +68,29 @@ router.get('/login',isLoggedIn, authenticate, (req, res) => {
   req.session.errors = [];
 });
 
+router.get('/dashboard', isAuthenticated, authenticate, async (req, res) => {
+  
+  const blogs = await Blog.findAll({
+    where: {
+      author_id: req.user.id
+    },
+    include: {
+      model: User,
+      as: 'author'
+    }
+  });
+
+  res.render('dashboard', { 
+    user: req.user,
+    blogs: blogs.map(b => b.get({ plain: true }))
+  });
+});
+
+router.get('/blog', isAuthenticated, authenticate, (req, res) => {
+  res.render('blog_form', {
+    user: req.user
+  });
+});
 
 
 module.exports = router;

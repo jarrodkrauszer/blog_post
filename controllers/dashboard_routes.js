@@ -22,22 +22,19 @@ async function authenticate(req, res, next) {
   next();
 }
 
-router.post('/blog', isAuthenticated, authenticate, async (req, res) => {
+router.post('/dashboard', isAuthenticated, authenticate, async (req, res) => {
   try {
     const blog = await Blog.create(req.body);
 
     await req.user.addBlog(blog);
 
-    req.session.blog_id = blog.id
-
     res.redirect('/');
     
   } catch (err) {
-    console.log(err);
-
-    req.session.errors = err.errors.map(err => err.message);
+    req.session.errors = error.errors.map(err => err.message);
     res.redirect('/register');
   }
 });
+
 
 module.exports = router;

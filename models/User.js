@@ -3,19 +3,18 @@ const db = require('../config/connection');
 
 const { hash, compare } = require('bcrypt');
 
+const Blog = require('./Blog');
+
 class User extends Model {}
 
 User.init({
-  email: {
+  user_name: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: {
       args: true,
       msg: 'The email is already in use.'
     },
-    validate: {
-      isEmail: true
-    }
   },
   password: {
     type: DataTypes.STRING,
@@ -45,5 +44,8 @@ User.prototype.validatePass = async function(formPassword) {
   const isValid = await compare(formPassword, this.password);
   return isValid;
 }
+
+User.hasMany(Blog, { as: 'blogs', foreignKey: 'author_id' });
+Blog.belongsTo(User, { as: 'author', foreignKey: 'author_id' });
 
 module.exports = User;
