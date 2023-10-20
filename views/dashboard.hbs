@@ -1,12 +1,18 @@
-<section class="column align-center coo-output">
+<section class="column align-center blog-output">
   {{#each blogs}}
-    <div class="blog">
-      <h3 class="text-center">{{text}}</h3>
-      <div class="row justified-between">
-        <p>{{date}}</p>
-        <p>By: {{author.user_name}}</p>
+      <div class="blog">
+        <a href="/blog/edit/{{id}}">
+          <header class="row justify-between align-center">
+            <h1>{{title}}</h1>
+            <div class="row justified-between posted-by">
+              <p>Posted By: {{author.user_name}}</p>
+              <span>on</span>
+              <p>{{date}}</p>
+            </div>
+          </header>
+          <p class="text-center blog-text">{{text}}</p>
+        </a>
       </div>
-    </div>
   {{/each}}
 
   <a href="/blog">

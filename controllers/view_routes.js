@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const User = require('../models/User');
-const Blog = require('../models/Blog');
+const { User, Blog, Comment } = require('../models');
 
 function isLoggedIn(req, res, next) {
   if (req.session.user_id) {
@@ -23,11 +22,10 @@ async function authenticate(req, res, next) {
 
   if (userId) {
     const user = await User.findByPk(userId, {
-      attributes: ['id', 'email']
+      attributes: ['id', 'user_name']
      })
      
      req.user = user.get({ plain: true })
-     console.log('User', req.user);
   }
 
   next();
@@ -91,6 +89,44 @@ router.get('/blog', isAuthenticated, authenticate, (req, res) => {
     user: req.user
   });
 });
+
+router.get('/comment/:id', isAuthenticated, authenticate, async (req, res) => {
+
+  const blog = await Blog.findByPk(req.params.id, {
+    include: {
+      model: User,
+      as: 'author'
+    }
+  });
+
+  const comments = await Comment.findAll({
+    include: [
+      {
+        model: User,
+        as: 'author'
+      },
+      {
+        model: Blog
+      }
+    ]
+  });
+  
+  res.render('comment_form', { 
+    user: req.user,
+    blog: blog.get({ plain: true }),
+    comments: comments.map(c => c.get({ plain: true }))
+  });
+});
+
+// Show Edit Form
+router.get('/blog/edit/:id', isAuthenticated, authenticate, async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id);
+
+  res.render('edit_blog_form', {
+    user: req.user,
+    blog: blog.get({ plain: true })
+  })
+})
 
 
 module.exports = router;

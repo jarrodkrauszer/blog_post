@@ -86,21 +86,30 @@ form > * {
 
 .blog {
   width: 80%;
-  height: %;
+  height: 200px;
   border: solid var(--secondary-color);
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }
 
 .blog header {
   padding: 1rem .5rem;
+  margin-bottom: .5rem;
+}
+
+.blog h1 {
+  font-size: 1.5rem;
+}
+
+.blog header a {
+  color: var(--primary-color);
+}
+
+.blog a:hover {
+  text-decoration: none;
 }
 
 .posted-by > *:not(:last-child) {
   margin-right: .3rem;
-}
-
-.blog p {
-  text-align: left;
 }
 
 .new-post-btn {
@@ -116,7 +125,6 @@ form > * {
   width: 80%;
   height: 75%;
   border: solid var(--secondary-color);
-  padding: .5rem;
 }
 
 .blog-form h1 {
@@ -125,9 +133,13 @@ form > * {
 }
 
 .blog-form p {
-  padding: 0 0 0 .2rem;
   font-size: 1.2rem;
-  margin-bottom: 0;
+  margin: 0 .5rem;
+}
+
+.blog-form textarea, button, input {
+  margin: .5rem .5rem;
+  padding-bottom: .5rem;
 }
 
 .blog-header {
@@ -141,6 +153,12 @@ form > * {
 
 .blog-input {
   height: 10rem;
+}
+
+.blog-text {
+  text-align: left;
+  color: var(--secondary-color);
+  padding: 0 .5rem;
 }
 
 .create-btn {
@@ -158,3 +176,38 @@ form > * {
 .login-form a:hover {
   text-decoration: none;
 }
+
+.comment-form {
+  width: 80%;
+  margin: .5rem 0;
+  border: solid var(--secondary-color);
+}
+
+.comment-header {
+  margin-top: 0;
+  height: 4rem;
+}
+
+.comment-form textarea {
+  margin: 1rem;
+  padding: 20px;
+}
+
+.comment-form button {
+  margin: 1rem;
+}
+
+.comment p {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.delete-btn {
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.padding {
+  padding: 0 .5rem;
+}
+

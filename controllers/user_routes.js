@@ -13,7 +13,10 @@ router.post('/register', async (req, res) => {
 
   } catch (err) {
     // Set our session errors array to an array of just sequelize error message stings
-    req.session.errors = err.errors.map(err => err.message);
+    if (err.errors) {
+      req.session.errors = err.errors.map(err => err.message);
+    }
+    
     res.redirect('/register');
   }
 

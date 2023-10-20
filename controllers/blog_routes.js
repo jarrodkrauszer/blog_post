@@ -28,16 +28,36 @@ router.post('/blog', isAuthenticated, authenticate, async (req, res) => {
 
     await req.user.addBlog(blog);
 
-    req.session.blog_id = blog.id
-
-    res.redirect('/');
+    res.redirect('/dashboard');
     
   } catch (err) {
     console.log(err);
 
-    req.session.errors = err.errors.map(err => err.message);
+    // req.session.errors = err.errors.map(err => err.message);
     res.redirect('/register');
   }
 });
+
+router.put('/blog/:id', isAuthenticated, async (req, res) => {
+
+  await Blog.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  });
+
+  res.redirect('/dashboard');
+});
+
+// Delete a Coo
+router.delete('/blog/:id', isAuthenticated, async (req, res) => {
+  
+  await Blog.destroy({
+    where: { id: req.params.id }
+  });
+
+  res.redirect('/dashboard');
+})
+
 
 module.exports = router;

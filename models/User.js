@@ -45,7 +45,4 @@ User.prototype.validatePass = async function(formPassword) {
   return isValid;
 }
 
-User.hasMany(Blog, { as: 'blogs', foreignKey: 'author_id' });
-Blog.belongsTo(User, { as: 'author', foreignKey: 'author_id' });
-
 module.exports = User;
