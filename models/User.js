@@ -13,7 +13,7 @@ User.init({
     allowNull: false,
     unique: {
       args: true,
-      msg: 'The email is already in use.'
+      msg: 'The username is already in use.'
     },
   },
   password: {
