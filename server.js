@@ -38,7 +38,10 @@ app.set('view engine', '.hbs');
 app.use(session({ 
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true
+  }
 }));
 
 // Load our view routes at the root level '/'

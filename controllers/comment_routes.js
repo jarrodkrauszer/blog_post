@@ -21,7 +21,7 @@ async function authenticate(req, res, next) {
   next();
 }
 
-router.post('/comment/:id', async (req, res) => {
+router.post('/comment/:id', isAuthenticated, authenticate, async (req, res) => {
   try {
     console.log(req.body);
 
