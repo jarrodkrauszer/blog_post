@@ -32,7 +32,7 @@ async function authenticate(req, res, next) {
 }
 
 // Add one test GET route at root localhost:PORT/
-router.get('/', authenticate, async (req, res) => {
+router.get('/', isAuthenticated, authenticate, async (req, res) => {
 
   const blogs = await Blog.findAll({
     include: {
